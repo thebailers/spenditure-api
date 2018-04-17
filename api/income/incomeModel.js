@@ -30,7 +30,7 @@ var IncomeSchema = new Schema(
   },
   {
     collection: 'income',
-  },
+  }
 );
 
 module.exports = mongoose.model('Income', IncomeSchema);

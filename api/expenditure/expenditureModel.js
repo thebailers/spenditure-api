@@ -30,7 +30,7 @@ var ExpenditureSchema = new Schema(
   },
   {
     collection: 'expenditure',
-  },
+  }
 );
 
 module.exports = mongoose.model('Expenditure', ExpenditureSchema);

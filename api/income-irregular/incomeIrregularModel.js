@@ -27,7 +27,7 @@ var IncomeIrregularSchema = new Schema(
   },
   {
     collection: 'incomeirregular',
-  },
+  }
 );
 
 module.exports = mongoose.model('IncomeIrregular', IncomeIrregularSchema);

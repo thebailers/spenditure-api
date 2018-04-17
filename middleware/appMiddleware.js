@@ -1,5 +1,5 @@
 var webpack = require('webpack');
-var config = require('../../webpack.config.dev');
+var config = require('../webpack.config.dev.js');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 
@@ -13,8 +13,8 @@ module.exports = function(app) {
   app.use(
     require('webpack-dev-middleware')(compiler, {
       noInfo: true,
-      publicPath: config.output.publicPath,
-    }),
+      publicPath: config.output.publicPath
+    })
   );
 
   app.use(require('webpack-hot-middleware')(compiler));

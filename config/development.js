@@ -1,3 +1,5 @@
+var shh = require('./shh');
+
 module.exports = {
   // enabled logging for development
   logging: true,

@@ -1,4 +1,4 @@
-var Transaction = require('./transactionsModel');
+const Transaction = require('./transactionsModel');
 
 exports.get = function(req, res) {
   Transaction.find(
@@ -9,23 +9,23 @@ exports.get = function(req, res) {
       //   $lt: req.query.end
       // }
     },
-    function(err, transactions) {
+    (err, transactions) => {
       if (err) {
         res.send(err);
       }
       res.status(200).json(transactions);
-    },
+    }
   );
 };
 
 exports.post = function(req, res) {
-  var transaction = new Transaction();
+  const transaction = new Transaction();
   transaction.name = req.body.name;
   transaction.amount = req.body.amount;
   transaction.date = req.body.date;
   transaction.user = req.user._id;
 
-  transaction.save(function(err) {
+  transaction.save(err => {
     if (err) {
       res.send(err);
     }
@@ -34,7 +34,7 @@ exports.post = function(req, res) {
 };
 
 exports.getOne = function(req, res) {
-  Transaction.findById(req.params.id, function(err, transaction) {
+  Transaction.findById(req.params.id, (err, transaction) => {
     if (err) {
       res.send(err);
     }
@@ -44,7 +44,7 @@ exports.getOne = function(req, res) {
 };
 
 exports.put = function(req, res) {
-  Transaction.findById(req.params.id, function(err, transaction) {
+  Transaction.findById(req.params.id, (err, transaction) => {
     if (err) {
       res.send(err);
     }
@@ -53,7 +53,7 @@ exports.put = function(req, res) {
     transaction.amount = req.body.amount;
     transaction.date = req.body.date;
 
-    transaction.save(function(err) {
+    transaction.save(err => {
       if (err) {
         res.send(err);
       }
@@ -67,11 +67,11 @@ exports.delete = function(req, res) {
     {
       _id: req.params.id,
     },
-    function(err, transaction) {
+    (err, transaction) => {
       if (err) {
         res.send(err);
       }
       res.json(transaction);
-    },
+    }
   );
 };

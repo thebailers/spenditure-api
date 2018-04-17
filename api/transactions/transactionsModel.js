@@ -19,7 +19,7 @@ var TransactionsSchema = new Schema(
   },
   {
     collection: 'transactions',
-  },
+  }
 );
 
 module.exports = mongoose.model('Transactions', TransactionsSchema);

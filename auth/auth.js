@@ -74,7 +74,7 @@ exports.getFreshUser = function() {
       },
       function(err) {
         next(err);
-      },
+      }
     );
   };
 };
@@ -115,7 +115,7 @@ exports.verifyUser = function() {
       },
       function(err) {
         next(err);
-      },
+      }
     );
   };
 };
@@ -125,6 +125,6 @@ exports.signToken = function(id, username, firstname) {
   return jwt.sign(
     { _id: id, username: username, firstname: firstname },
     config.secrets.jwt,
-    { expiresIn: config.expireTime },
+    { expiresIn: config.expireTime }
   );
 };

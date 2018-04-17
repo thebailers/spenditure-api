@@ -17,7 +17,7 @@ exports.params = function(req, res, next, id) {
       },
       function(err) {
         next(err);
-      },
+      }
     );
 };
 
@@ -31,7 +31,7 @@ exports.get = function(req, res, next) {
       },
       function(err) {
         next(err);
-      },
+      }
     );
 };
 
@@ -64,7 +64,7 @@ exports.post = function(req, res, next) {
       user._id,
       user.username,
       user.firstname,
-      user.lastname,
+      user.lastname
     );
     res.json({ token: token });
   });

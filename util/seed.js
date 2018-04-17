@@ -303,7 +303,7 @@ var createDoc = function(model, doc) {
 var cleanDB = function() {
   logger.log('... cleaning the DB');
   var cleanPromises = [User, Transactions, Expenditure, Income].map(function(
-    model,
+    model
   ) {
     return model.remove().exec();
   });
