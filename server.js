@@ -18,9 +18,9 @@ require('./middleware/appMiddleware')(app);
 app.use('/api', api);
 app.use('/auth', auth);
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../index.html'));
-});
+// app.get('*', function(req, res) {
+//   res.sendFile(path.join(__dirname, '../index.html'));
+// });
 
 app.use(err);
 
