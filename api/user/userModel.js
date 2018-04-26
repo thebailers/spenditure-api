@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 var bcrypt = require('bcrypt');
 
 var UserSchema = new Schema({
@@ -22,6 +23,28 @@ var UserSchema = new Schema({
   lastname: {
     type: String,
     required: true,
+  },
+
+  onboarded: {
+    status: {
+      type: Boolean,
+      default: false
+    },
+    stages: {
+      stage1: {
+        type: Boolean,
+        default: false
+      },
+      stage2: {
+        type: Boolean,
+        default: false,
+      }
+    },
+  },
+
+  household: {
+    type: ObjectId,
+    required: false,
   },
 
   created_at: Date,

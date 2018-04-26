@@ -8,5 +8,6 @@ router.use(
   require('./income-irregular/incomeIrregularRoutes')
 );
 router.use('/users', require('./user/userRoutes'));
+router.use('/households', require('./household/householdRoutes'));
 
 module.exports = router;
