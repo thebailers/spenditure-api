@@ -16,6 +16,7 @@ router
   .route('/:id')
   .get(controller.getOne)
   .put(checkUser, controller.put)
+  // .put(checkUser, controller.setHousehold)
   .delete(checkUser, controller.delete);
 
 module.exports = router;

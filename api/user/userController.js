@@ -1,9 +1,13 @@
 var User = require('./userModel');
 var _ = require('lodash');
 var signToken = require('../../auth/auth').signToken;
+var ObjectID = require('mongodb').ObjectID;
 
 exports.params = function(req, res, next, id) {
-  User.findById(id)
+  console.log('params')
+  objId = new ObjectID(id);
+  console.log(objId)
+  User.findById(objId)
     .select('-password')
     .exec()
     .then(
@@ -22,6 +26,7 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
+  console.log('.get')
   User.find({})
     .select('-password')
     .exec()
@@ -35,15 +40,36 @@ exports.get = function(req, res, next) {
     );
 };
 
-exports.getOne = function(req, res, next) {
-  var user = req.user.toJson();
-  res.json(user.toJson());
+exports.getOne = function(req, res, next, id) {
+  console.log('get one')
+  objId = new ObjectID(id);
+  console.log(objId)
+  User.findById(objId)
+      .select('-password')
+      .exec()
+      .then(
+          function(user) {
+            if (!user) {
+              next(new Error('No new user with that id'));
+            } else {
+              // req.user = user;
+              // next();
+              var user = req.user.toJson();
+              res.json(user.toJson());
+            }
+          },
+          function(err) {
+            next(err);
+          }
+      );
 };
 
 exports.put = function(req, res, next) {
+  console.log('put')
   var user = req.user;
   var update = req.body;
   _.merge(user, update);
+  console.log(user)
   user.save(function(err, saved) {
     if (err) {
       next(err);
@@ -52,6 +78,11 @@ exports.put = function(req, res, next) {
     }
   });
 };
+
+// exports.setHousehold = function(req, res, next) {
+//   var user = req.user;
+//   var update = req.body;
+// }
 
 exports.post = function(req, res, next) {
   var newUser = new User(req.body);

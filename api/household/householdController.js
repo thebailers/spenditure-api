@@ -11,6 +11,6 @@ exports.post = function(req, res) {
 
   household.save(function(err) {
     if (err) res.send(err);
-    res.json({ message: 'Household added successfully.' });
+    res.json({ message: 'Household added successfully.', id: householdId });
   })
 }
