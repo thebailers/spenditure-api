@@ -5,7 +5,7 @@ var app = express();
 var api = require('./api/');
 var auth = require('./auth/routes');
 var err = require('./middleware/err');
-var mongoose = require('mongoose');
+var mongoose = require('mongoose').set('debug', true);
 var config = require('./config/config');
 
 mongoose.connect(config.db.url);

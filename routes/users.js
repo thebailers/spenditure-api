@@ -1,3 +1,4 @@
+var ObjectId = require('mongodb').ObjectID;
 var User = require('../api/user/userModel');
 
 exports.getAllUsers = function(req, res) {
@@ -29,21 +30,20 @@ exports.updateUser = function(req, res) {
 exports.getOneUser = function(req, res, next) {
   return function(req, res, next) {
     User.findById(req.params.id)
-        .select('-password')
-        .exec()
-        .then(
-            function(user) {
-              if (!user) {
-                next(new Error('No new user with that id'));
-              } else {
-                console.log('hello')
-                res.json(res.user)
-                next()
-              }
-            },
-            function(err) {
-              next(err);
-            }
-        );
+      .select('-password')
+      .exec()
+      .then(
+        function(user) {
+          if (!user) {
+            next(new Error('No new user with that id'));
+          } else {
+            res.json(user)
+            next()
+          }
+        },
+        function(err) {
+          next(err);
+        }
+      );
   }
 }
