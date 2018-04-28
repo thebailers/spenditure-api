@@ -2,11 +2,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var householdSchema = new Schema(
-    {
-      users: [String],
-    }, {
-      collection: 'households',
-    }
+  {
+    users: [String],
+    shortId: String
+  }, {
+    collection: 'households',
+  }
 );
 
-module.exports = mongoose.model('Housholds', householdSchema);
+module.exports = mongoose.model('Households', householdSchema);
